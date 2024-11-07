@@ -30,8 +30,11 @@ public int[] findMax(int[][] array) {
     System.out.println("Max Value: " + max + " at " + java.util.Arrays.toString(location));
     return location;
 }
-/*public static void main(String[] args) {
-    Max a = new Max();
-    
-}*/
+public static void main(String[] args) {
+    Max maxFinder = new Max();
+        int[][] myArray = {{10, 5, 2}, {3, 8, 15}};
+
+        maxFinder.findMin(myArray);
+        maxFinder.findMax(myArray);
+}
 }
