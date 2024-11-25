@@ -4,11 +4,12 @@ package hashing;
     import java.util.LinkedList;
 
 class HashTable {
-    
+
     private int capacity;
     private LinkedList<Entry>[] table;
 
     class Entry {
+        
         String key;
         String value;
         
