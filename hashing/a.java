@@ -35,9 +35,10 @@ class HashTable {
     }
 
     public void put(String key, String value) {
-        
+
         int hash = getHash(key);
         for (Entry entry : table[hash]) {
+            
             if (entry.key.equals(key)) {
                 entry.value = value;
                 return;
