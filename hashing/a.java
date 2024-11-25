@@ -9,7 +9,7 @@ class HashTable {
     private LinkedList<Entry>[] table;
 
     class Entry {
-        
+
         String key;
         String value;
         
@@ -20,6 +20,7 @@ class HashTable {
     }
 
     @SuppressWarnings("unchecked")
+    
     public HashTable(int capacity) {
         this.capacity = capacity;
         table = new LinkedList[capacity];
