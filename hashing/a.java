@@ -24,7 +24,7 @@ class HashTable {
     public HashTable(int capacity) {
         this.capacity = capacity;
         table = new LinkedList[capacity];
-        
+
         for (int i = 0; i < capacity; i++) {
             table[i] = new LinkedList<>();
         }
@@ -35,6 +35,7 @@ class HashTable {
     }
 
     public void put(String key, String value) {
+        
         int hash = getHash(key);
         for (Entry entry : table[hash]) {
             if (entry.key.equals(key)) {
