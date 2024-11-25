@@ -48,9 +48,10 @@ class HashTable {
     }
 
     public String get(String key) {
-        
+
         int hash = getHash(key);
         for (Entry entry : table[hash]) {
+            
             if (entry.key.equals(key)) {
                 return entry.value;
             }
