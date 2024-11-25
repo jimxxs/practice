@@ -20,10 +20,11 @@ class HashTable {
     }
 
     @SuppressWarnings("unchecked")
-    
+
     public HashTable(int capacity) {
         this.capacity = capacity;
         table = new LinkedList[capacity];
+        
         for (int i = 0; i < capacity; i++) {
             table[i] = new LinkedList<>();
         }
