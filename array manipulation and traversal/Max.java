@@ -23,7 +23,7 @@ public int[] findMin(int[][] array) {
         }
     }
     System.out.println("Min Value: " + min + " at " + java.util.Arrays.toString(location));
-    return location;
+    return location; 
 }
 
 
