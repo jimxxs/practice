@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PHILO'Z RESTAURANT - Experience authentic Ugandan cuisine in Rubaga, Kampala. Fine dining with local and international dishes.">
+    <meta name="keywords" content="Philo'z Restaurant, Kampala restaurant, Uganda dining, Rubaga restaurant, African cuisine">
+    <meta name="author" content="Philo'z Restaurant">
+    <meta property="og:title" content="PHILO'Z RESTAURANT - Fine Dining in Kampala">
+    <meta property="og:description" content="Experience authentic Ugandan cuisine in Rubaga, Kampala">
+    <meta property="og:type" content="website">
+    
+    <title>PHILO'Z RESTAURANT - Fine Dining in Kampala</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='90'>🍽️</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Your existing styles remain the same */
+        /* Adding new styles */
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .menu-filter-active {
+            background-color: rgba(251, 191, 36, 0.1);
+            color: rgba(251, 191, 36, 1);
+        }
+        
+        .notification {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            z-index: 50;
+            display: none;
+        }
+        
+        .success {
+            background-color: rgba(16, 185, 129, 0.9);
+            color: white;
+        }
+        
+        .error {
+            background-color: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+
+        /* Enhanced loader animation */
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(251, 191, 36, 0.1);
+            border-left: 4px solid rgba(251, 191, 36, 1);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Your existing HTML structure remains largely the same -->
+    <!-- Adding new menu filter section after menu heading -->
+    <div class="flex justify-center space-x-4 mb-8">
+        <button class="menu-filter menu-filter-active px-4 py-2 rounded-full" data-category="all">All</button>
+        <button class="menu-filter px-4 py-2 rounded-full" data-category="Signature Dish">Signature</button>
+        <button class="menu-filter px-4 py-2 rounded-full" data-category="Seafood">Seafood</button>
+        <button class="menu-filter px-4 py-2 rounded-full" data-category="Local Favorite">Local</button>
+    </div>
+
+    <!-- Add notification div -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Add schema markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "PHILO'Z RESTAURANT",
+      "image": "YOUR-RESTAURANT-IMAGE-URL",
+      "description": "Experience authentic Ugandan cuisine in Rubaga, Kampala",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Stensera Rd",
+        "addressLocality": "Rubaga",
+        "addressRegion": "Kampala",
+        "addressCountry": "UG"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 0.3124,
+        "longitude": 32.5446
+      },
+      "telephone": "+256 702 731 314",
+      "openingHours": "Mo-Sa 07:00-21:00"
+    }
+    </script>
+
+    <!-- Enhanced JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Your existing JavaScript remains
+        // Adding new functionality for menu filtering
+        document.querySelectorAll('.menu-filter').forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.dataset.category;
+                filterMenuItems(category);
+                
+                // Update active state
+                document.querySelectorAll('.menu-filter').forEach(btn => 
+                    btn.classList.remove('menu-filter-active'));
+                button.classList.add('menu-filter-active');
+            });
+        });
+
+        function filterMenuItems(category) {
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                const itemCategory = item.querySelector('.text-amber-300').textContent;
+                if (category === 'all' || itemCategory === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Form validation and notification
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 300);
+        }
+
+        // Handle form submissions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Add your form submission logic here
+                showNotification('Thank you! We will get back to you soon.', 'success');
+                form.reset();
+            });
+        });
+
+        // Enhanced menu item population with animation
+        function populateMenu() {
+            const menuContainer = document.getElementById('menuContainer');
+            menuItems.forEach((item, index) => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item bg-gray-900 rounded-lg overflow-hidden';
+                menuItem.setAttribute('data-aos', 'fade-up');
+                menuItem.setAttribute('data-aos-delay', `${index * 100}`);
+                // Rest of your menu item HTML remains the same
+            });
+        }
+    </script>
+</body>
+</html>
