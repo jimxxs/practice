@@ -34,7 +34,7 @@ class HashTable {
         return Math.abs(key.hashCode()) % capacity;
     }
 
-    public void put(String key, String value) {  
+    public void put(String key, String value) {   
 
         int hash = getHash(key);
         for (Entry entry : table[hash]) {
